@@ -15,16 +15,16 @@ if __name__ == "__main__":
     nginx_collection = db.nginx
 
     total_logs = nginx_collection.count_documents({})
-    print(F"{total_logs} logs")
+    print(f"{total_logs} logs")
 
     methods = ["GET", "POST", "PUT", "PATCH", "DELETE"]
     print("Methods:")
     for method in methods:
         count = nginx_collection.count_documents({"method": method})
-        print(F"\tmethod {method}: {count}")
+        print(f"\tmethod {method}: {count}")
 
     status_check = nginx_collection.count_documents(
         {"method": "GET", "path": "/status"}
     )
 
-    print(F"{status_check} status check")
+    print(f"{status_check} status check")
