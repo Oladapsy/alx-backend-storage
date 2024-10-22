@@ -11,7 +11,7 @@ if __name__ == "__main__":
     """
 
     client = MongoClient(host="localhost", port=27017)
-    db = client.log
+    db = client.logs
     nginx_collection = db.nginx
 
     total_logs = nginx_collection.count_documents({})
@@ -21,7 +21,7 @@ if __name__ == "__main__":
     print("Methods:")
     for method in methods:
         count = nginx_collection.count_documents({"method": method})
-        print(F"\tmethod {method} {count}")
+        print(F"\tmethod {method}: {count}")
 
     status_check = nginx_collection.count_documents(
         {"method": "GET", "path": "/status"}
