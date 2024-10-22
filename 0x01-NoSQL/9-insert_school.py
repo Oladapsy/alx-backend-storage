@@ -6,5 +6,4 @@
 
 def insert_school(mongo_collection, **kwargs):
     """ insert a new doc ina collection based on kwargs"""
-    for k, v in kwargs.item():
-        mongo_collection.insert({k: v})
+    return mongo_collection.insert(kwargs)
