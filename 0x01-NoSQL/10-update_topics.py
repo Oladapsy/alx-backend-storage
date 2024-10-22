@@ -6,4 +6,6 @@
 
 def update_topics(mongo_collection, name, topics):
     """ changes topic of a collection document"""
-    return mongo_collection.update({name: topics})
+    filterBy = {name}
+    update = {$set: {name: topics}}
+    return mongo_collection.updatMany(fiterBy, update)
