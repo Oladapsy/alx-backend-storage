@@ -22,10 +22,8 @@ class Cache():
         self._redis = redis.Redis(host="localhost", port=6379, db=0)
         self._redis.flushdb()
 
-    def store(self, data: Union[str, bytes, int, float]) -> str:
-        '''
-            Store data in the cache.
-        '''
-        randomKey = str(uuid4())
-        self._redis.set(randomKey, data)
-        return randomKey
+    def store(self, data: Union[str, int, float, bytes]) -> str:
+        """ store method takes data and return string"""
+        rkey = str(uuid4())
+        self._redis.set(rkey, data)
+        return rkey
