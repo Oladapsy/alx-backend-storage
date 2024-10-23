@@ -23,9 +23,7 @@ class Cache():
         self._redis.flushdb()
 
     def store(self, data: Union[str, bytes, int, float]) -> str:
-        '''
-            Store data in the cache.
-        '''
-        randomKey = str(uuid4())
-        self._redis.set(randomKey, data)
-        return randomKey
+        """ store method takes data and return string"""
+        rkey = str(uuid4())
+        self._redis.set(rkey, data)
+        return rkey
