@@ -37,7 +37,7 @@ class Cache():
 
     def get_str(self, key: str) -> Optional[str]:
         """ get str from cache"""
-        return (self.get(key, lambda x: x.decode('UTF-8')))
+        return (self.get(key, lambda x: x.decode("utf-8")))
 
     def get_int(self, key: int) -> Optional[int]:
         """ get int from cache"""
