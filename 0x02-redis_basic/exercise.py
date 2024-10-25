@@ -11,7 +11,7 @@
     int or float.
 """
 import redis
-from typing import Union
+from typing import Callable, Union, Optional
 from uuid import uuid4
 
 
@@ -27,3 +27,22 @@ class Cache():
         rkey = str(uuid4())
         self._redis.set(rkey, data)
         return rkey
+
+    def get(
+        self,
+        key: str,
+        fn: Optional[Callable] = None
+    ) -> Union[str, bytes, int, float]:
+        """ get a record based on key or value based on key"""
+        value = self._redit.get(key)
+        if fn:
+            value = fn(value)
+        return value
+
+    def get_str(self):
+        """ get str from cache"""
+        pass
+
+    def get_int(self):
+        """ get int from cache"""
+        pass
