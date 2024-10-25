@@ -13,7 +13,7 @@
 import redis
 from typing import Callable, Union, Optional
 from uuid import uuid4
-
+import functools
 
 """
     Above Cache define a count_calls decorator that takes a
@@ -42,6 +42,7 @@ class Cache():
         self._redis = redis.Redis(host="localhost", port=6379, db=0)
         self._redis.flushdb()
 
+    @count_calls
     def store(self, data: Union[str, bytes, int, float]) -> str:
         """ store method takes data and return string"""
         rkey = str(uuid4())
