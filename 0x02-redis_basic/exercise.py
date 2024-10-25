@@ -30,7 +30,7 @@ class Cache():
 
     def get(self, key: str, fn: Optional[Callable] = None) -> Union[str, bytes, int, float]:  # noqa: E501
         """ get a record based on key or value based on key"""
-        value = self._redit.get(key)
+        value = self._redis.get(key)
         if fn:
             value = fn(value)
         return value
