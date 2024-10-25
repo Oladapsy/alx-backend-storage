@@ -15,26 +15,6 @@ from typing import Callable, Union, Optional
 from uuid import uuid4
 
 
-"""
-    Above Cache define a count_calls decorator that takes a
-    single methodCallable argument and returns a Callable.
-"""
-
-
-def count_calls(method: Callable) -> Callable:
-    """count all called method in the Cache class"""
-
-    @functools.wraps(method)
-    def wrapper(self, *args, **kwargs):
-        """wrapper method to increment call count anytime the
-        methods are called"""
-        key = method.__qualname__
-
-        self._redis.incr(key)
-        return method(self, *args, **kwargs)
-    return wrapper
-
-
 class Cache():
     """ a Cache class"""
     def __init__(self):
