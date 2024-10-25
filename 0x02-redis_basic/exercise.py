@@ -28,25 +28,17 @@ class Cache():
         self._redis.set(rkey, data)
         return rkey
 
-    def get(
-        self,
-        key: str,
-        fn: Optional[Callable] = None
-    ) -> Union[str, bytes, int, float]:
+    def get(self, key: str, fn: Optional[Callable] = None) -> Union[str, bytes, int, float]:  # noqa: E501
         """ get a record based on key or value based on key"""
         value = self._redit.get(key)
         if fn:
             value = fn(value)
         return value
 
-    def get_str(self):
+    def get_str(self, key: str) -> Optional[str]:
         """ get str from cache"""
-        cached_data = self._redis.get(key)
-        if str(cached_data):
-            return cached_data
+        return (self.get(key, lambda x: x.decode('UTF-8')))
 
-    def get_int(self):
+    def get_int(self, key: int) -> Optional[int]:
         """ get int from cache"""
-        cached_data = self._redis.get(key)
-        if int(cached_data):
-            return cached_data
+        return self.get(key, int)
