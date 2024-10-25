@@ -41,8 +41,12 @@ class Cache():
 
     def get_str(self):
         """ get str from cache"""
-        pass
+        cached_data = self._redis.get(key)
+        if str(cached_data):
+            return cached_data
 
     def get_int(self):
         """ get int from cache"""
-        pass
+        cached_data = self._redis.get(key)
+        if int(cached_data):
+            return cached_data
