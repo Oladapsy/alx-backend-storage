@@ -8,9 +8,10 @@
     particular pagination parameters.
     Page numbers are 1-indexed, i.e. the first page is page 1.
 """
+from typing import Tuple
 
 
-def index_range(page: int, page_size: int) -> tuple:
+def index_range(page: int, page_size: int) -> Tuple[int, int]:
     """paginating function"""
     end = page * page_size
     start = end - page_size
